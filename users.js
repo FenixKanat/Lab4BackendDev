@@ -1,4 +1,4 @@
-import mongoose from 'mongoose';
+const mongoose = require('mongoose');
 
 const userSchema = new mongoose.Schema({
   userID: String,
@@ -9,4 +9,4 @@ const userSchema = new mongoose.Schema({
  
 const users = mongoose.model("users", userSchema);
 
-export default users;
+module.exports = users;
