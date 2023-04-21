@@ -4,9 +4,9 @@ const mongoose = require('mongoose');
 require('dotenv').config();
 const RegisterNewUser = require('./authentication/Register');
 const path = require('path');
-const user = require('./users.js');
 const setupAdminPath = require('./Routes/adminPath');
 const setupRegisterPath= require('./Routes/registerPath');
+const setupLoginPath = require('./Routes/loginPath');
 
 mongoose.connect(process.env.MongoDB, {
   useNewUrlParser: true,
@@ -24,6 +24,7 @@ app.use(express.json());
 
 setupAdminPath(app);
 setupRegisterPath(app);
+setupLoginPath(app);
 
 app.post('/register', async (req, res) => {
   const { userID, userName, userRole, password } = req.body;
