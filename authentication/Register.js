@@ -1,4 +1,4 @@
-const users = require('./users');
+const users = require('../users');
 
 async function RegisterNewUser(userID, userName, userRole, password) {
   const newUser = new users({
