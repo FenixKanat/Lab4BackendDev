@@ -5,7 +5,10 @@ import jwt from 'jsonwebtoken';
 
 dotenv.config();
 
-//app.use(express.urlencoded({ extended: false }));
+
+
+var secretKey= process.env.secretToken;
+
 
 async function encryptP(pass) {
 
