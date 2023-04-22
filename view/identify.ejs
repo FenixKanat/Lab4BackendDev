@@ -1,13 +1,19 @@
 <h1>LOGIN</h1>
+
 <form action="/identify" method="POST">
-  <div>
-    <label for="userId">User id</label>
-    <input type="text" id="userId" name="userId" required>
+  <div style="margin-bottom: 10px;">
+    <label for="userId" style="display: block; margin-bottom: 5px;">User ID:</label>
+    <input type="text" id="userId" name="userId" required style="padding: 5px;">
   </div>
-  <div>
-    <label for="password">Password</label>
-    <input type="password" id="password" name="password" required>
+  
+  <div style="margin-bottom: 10px;">
+    <label for="password" style="display: block; margin-bottom: 5px;">Password:</label>
+    <input type="password" id="password" name="password" required style="padding: 5px;">
   </div>
-  <button type="submit">Login</button>
+
+  <div style="margin-bottom: 10px;">
+    <button type="submit" style="padding: 5px;">Login</button>
+  </div>
 </form>
-<a href="/register">REGISTER</a>
+
+<p style="margin-top: 20px;">Not registered yet? <a href="/register">Register here</a>.</p>

@@ -1,20 +1,32 @@
 <h1>Register</h1>
+
 <form action="/register" method="POST">
-  <div>
-    <label for="userId">User id</label>
-    <input type="text" id="userId" name="userId" required>
+  <div style="margin-bottom: 10px;">
+    <label for="username" style="display: block; margin-bottom: 5px;">Username:</label>
+    <input type="text" id="userName" name="userName" required style="padding: 5px;">
   </div>
-  <div>
-    <label for="password">Password</label>
-    <input type="password" id="password" name="password" required>
+
+  <div style="margin-bottom: 10px;">
+    <label for="userId" style="display: block; margin-bottom: 5px;">User ID:</label>
+    <input type="text" id="userId" name="userID" required style="padding: 5px;">
   </div>
-  <div>
-    <label for="role">Role</label>
-    <select name="role" id="role">
+  
+  <div style="margin-bottom: 10px;">
+    <label for="password" style="display: block; margin-bottom: 5px;">Password:</label>
+    <input type="password" id="password" name="password" required style="padding: 5px;">
+  </div>
+
+  <div style="margin-bottom: 10px;">
+    <label for="role" style="display: block; margin-bottom: 5px;">Role:</label>
+    <select name="userRole" id="userRole" style="padding: 5px;">
       <option value="teacher">Teacher</option>
       <option value="student">Student</option>
     </select>
   </div>
-  <button type="submit">Register</button>
+
+  <div style="margin-bottom: 10px;">
+    <button type="submit" style="padding: 5px;">Register</button>
+  </div>
 </form>
-<a href="/identify">LOGIN</a>
+
+<p style="margin-top: 20px;">Already registered? <a href="/identify">Login here</a>.</p>
