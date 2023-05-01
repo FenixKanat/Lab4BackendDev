@@ -1,44 +1,27 @@
-import users from '../users.js';
-import { checkPassword } from './encrypt.js';
-import jwt from 'jsonwebtoken';
-require('dotenv').config();
+const users = require('../users.js');
+const jwt = require('jsonwebtoken');
 
-const secretKey = process.env.secretToken;
 
-async function login(username, password) {
-  console.log("");
-  const user = await users.findOne({ username });
+async function login(userName, password) {
+  console.log('userName:', userName);
+  const user = await users.findOne({ userName });
+  console.log('user:', user);
+
   if (!user) {
-    return 'Invalid username';
+    throw new Error('Invalid username');
   }
 
-  if (!checkPassword(password, user.password)) {
-    return 'Invalid password';
+  if (user.password !== password) {
+    throw new Error('Incorrect password');
   }
 
-  // Create the JWT payload
-  const payload = {
-    id: user._id,
-    username: user.username
-  };
+  // Generate a token
+  const token = jwt.sign({ userID: user.userID }, process.env.TOKEN_SECRET);
 
-  // Sign the JWT with the secret key
-  const token = jwt.sign(payload, secretKey);
-
-  return {
-    user,
-    token
-  };
+  // Return the token and user object if login is successful
+  return { token, user };
 }
 
-// Verify a JWT with the secret key
-function verifyToken(token) {
-  try {
-    const decoded = jwt.verify(token, secretKey);
-    return decoded;
-  } catch (err) {
-    return null;
-  }
-}
 
-export { login, verifyToken };
+
+module.exports = login;
