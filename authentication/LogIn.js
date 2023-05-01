@@ -15,6 +15,7 @@ async function login(userName, password) {
     throw new Error('Incorrect password');
   }
 
+
   // Generate a token
   const token = jwt.sign({ userID: user.userID }, process.env.TOKEN_SECRET);
 
