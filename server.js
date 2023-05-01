@@ -7,10 +7,7 @@ const login = require('./authentication/LogIn');
 const path = require('path');
 const jwt = require('jsonwebtoken');
 const cookieParser = require('cookie-parser');
-
-
-const users = require('./users.js');
-
+const users = require('./users');
 
 // yesterday I added verify into /identify, check if it works or not.
 mongoose.connect(process.env.MongoDB, {
@@ -28,9 +25,6 @@ app.set('view engine', 'ejs');
 app.use(express.json());
 app.use(cookieParser());
 app.use(express.urlencoded({ extended: true }));
-
-
-
 
 app.get('/start', async (req, res) => {
   // Verify the token
@@ -50,7 +44,6 @@ app.get('/start', async (req, res) => {
   }
 });
 
-
 app.get('/identify', async (req, res) => {
   res.render("identify.ejs");
 });
@@ -60,7 +53,22 @@ app.get('/register', async (req, res) => {
 });
 
 app.get('/admin', async (req, res) => {
-  res.render("admin.ejs");
+  const token = req.cookies.token;
+  if (!token) {
+    return res.redirect('identify');
+  }
+
+  try{
+  
+  const decoded = jwt.verify(token, process.env.TOKEN_SECRET);
+  const userID = decoded.userID;
+
+  const data = await users.find({});
+  res.render('admin.ejs', { userID, data });
+} catch (err) {
+  res.redirect('identify');
+}
+
 });
 
 app.post('/register', async (req, res) => {
@@ -75,10 +83,15 @@ app.post('/identify', async (req, res) => {
   try {
     const result = await login(userName, password);
 
-    // Pass the token to the client-side
-    res.cookie('token', result.token);
+    // Check if the user has an "admin" role
+    if (result.user.userRole === 'admin') {
+      // Pass the token to the client-side
+      res.cookie('token', result.token);
 
-    res.redirect('start');
+      res.redirect('admin');
+    } else {
+      res.redirect('start');
+    }
   } catch (err) {
     res.render('identify.ejs', { error: err.message });
   }
