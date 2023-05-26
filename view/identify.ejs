@@ -1,20 +1,90 @@
-<h1>LOGIN</h1>
+<style>
+  body {
+    background-color: #f7f7f7;
+    font-family: Arial, sans-serif;
+  }
+
+  h1 {
+    color: #333;
+    text-align: center;
+    margin-top: 50px;
+  }
+
+  form {
+    max-width: 300px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  label {
+    display: block;
+    margin-bottom: 10px;
+    color: #555;
+    font-weight: bold;
+  }
+
+  input[type="text"],
+  input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+  }
+
+  button[type="submit"] {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    background-color: #4CAF50;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+
+  button[type="submit"]:hover {
+    background-color: #45a049;
+  }
+
+  p {
+    margin-top: 20px;
+    text-align: center;
+    color: #777;
+  }
+
+  p a {
+    color: #4CAF50;
+    text-decoration: none;
+    font-weight: bold;
+  }
+
+  p a:hover {
+    text-decoration: underline;
+  }
+</style>
+
+<h1>Login</h1>
 
 <form action="/identify" method="POST">
-  <div style="margin-bottom: 10px;">
-    <label for="userName" style="display: block; margin-bottom: 5px;">User Name:</label>
-    <input type="text" id="userName" name="userName" required style="padding: 5px;">
+  <div>
+    <label for="userName">User Name:</label>
+    <input type="text" id="userName" name="userName" required>
   </div>
   
-  <div style="margin-bottom: 10px;">
-    <label for="password" style="display: block; margin-bottom: 5px;">Password:</label>
-    <input type="password" id="password" name="password" required style="padding: 5px;">
+  <div>
+    <label for="password">Password:</label>
+    <input type="password" id="password" name="password" required>
   </div>
 
-
-  <div style="margin-bottom: 10px;">
-    <button type="submit" style="padding: 5px;">Login</button>
+  <div>
+    <button type="submit">Login</button>
   </div>
 </form>
 
-<p style="margin-top: 20px;">Not registered yet? <a href="/register">Register here</a>.</p>
+<p>Not registered yet? <a href="/register">Register here</a>.</p>
